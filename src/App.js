@@ -1,24 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import { createContext, useState } from "react";
+import { Routes, Route } from "react-router-dom";
+import "./App.css";
+import Spinner from "./components/Spinner";
+import { VerificationPage } from "./pages";
+import SignupForm from "./pages/SignupPage";
+import Dashboard from "./pages/Dashboard";
 
+export const VerifyContext = createContext();
 function App() {
+  const [code, setCode] = useState();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <VerifyContext.Provider value={[code, setCode]}>
+        <Routes>
+          <Route path="/verify" element={<VerificationPage />} />
+          <Route exact path="/sign-up" element={<SignupForm />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+        </Routes>
+      </VerifyContext.Provider>
+    </>
   );
 }
 
