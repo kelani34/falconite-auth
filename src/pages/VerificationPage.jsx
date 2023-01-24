@@ -66,41 +66,16 @@ const FormWrapper = styled.div`
 `;
 const Wrap = styled.div`
   background-color: #cbf4ff;
+  height: 100vh;
   display: flex;
   .half {
     background-color: #5ca3d6;
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 100vh;
     img {
       width: 100%;
-    }
-  }
-`;
-
-const Wrapper = styled.div`
-  height: 100%;
-  padding: 40px;
-  .container {
-    .title {
-      margin-bottom: 60px;
-    }
-    .content {
-    }
-    .sign-up {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      button {
-        width: 60%;
-        margin-bottom: 16px;
-      }
-      a {
-        color: #51b5e8;
-      }
-      p {
-        color: #211919;
-      }
     }
   }
 `;

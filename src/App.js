@@ -5,6 +5,7 @@ import Spinner from "./components/Spinner";
 import { VerificationPage } from "./pages";
 import SignupForm from "./pages/SignupPage";
 import Dashboard from "./pages/Dashboard";
+import Home from "./pages/Home";
 
 export const VerifyContext = createContext();
 function App() {
@@ -13,6 +14,7 @@ function App() {
     <>
       <VerifyContext.Provider value={[code, setCode]}>
         <Routes>
+          <Route path="/" element={<Home />} />
           <Route path="/verify" element={<VerificationPage />} />
           <Route exact path="/sign-up" element={<SignupForm />} />
           <Route path="/dashboard" element={<Dashboard />} />

@@ -3,6 +3,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import styled from "styled-components";
+import { toast } from "react-toastify";
 
 const VerificationForm = () => {
   const [code, setCode] = useState(["", "", "", "", ""]);
@@ -63,7 +64,7 @@ const VerificationForm = () => {
           navigate("/dashboard");
         }
         if (result.code === 400) {
-          setError(result.data.message);
+          toast.error(result.data.message);
         }
       })
       .catch((error) => console.log("error", error));
@@ -81,7 +82,7 @@ const VerificationForm = () => {
         <div className="form-wrapper">
           <div className="form-input">
             {code.map((char, index) => (
-              <input
+              <Input
                 key={index}
                 type="text"
                 maxLength={1}
@@ -91,7 +92,7 @@ const VerificationForm = () => {
                 ref={(input) => {
                   inputRefs.current[index] = input;
                 }}
-                NotValid={true}
+                NotValid={error ? true : false}
               />
             ))}{" "}
           </div>
@@ -129,16 +130,6 @@ const Form = styled.form`
   .form-input {
     display: flex;
     gap: 20px;
-    input {
-      padding: 30px 20px;
-      width: 40px;
-      border: 3px solid ${(props) => (props.NotValid ? " #f91d08" : "#4e8dd1")};
-      outline: none;
-      background: none;
-      border-radius: 4px;
-      font-size: 36px;
-      line-height: 26px;
-    }
   }
   .form-wrapper {
     display: flex;
@@ -147,6 +138,17 @@ const Form = styled.form`
     justify-content: center;
     gap: 150px;
   }
+`;
+
+const Input = styled.input`
+  padding: 30px 20px;
+  width: 40px;
+  border: 3px solid ${(props) => (props.NotValid ? " #f91d08" : "#4e8dd1")};
+  outline: none;
+  background: none;
+  border-radius: 4px;
+  font-size: 36px;
+  line-height: 26px;
 `;
 
 const Button = styled(motion.button)`

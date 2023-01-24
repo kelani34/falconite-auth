@@ -34,6 +34,7 @@ export default SignupPage;
 
 const Wrap = styled.div`
   background-color: #cbf4ff;
+  height: 100vh;
   .p-container {
     display: flex;
     .half {
@@ -41,6 +42,7 @@ const Wrap = styled.div`
       display: flex;
       align-items: center;
       justify-content: center;
+      height: 100vh;
       img {
         width: 100%;
       }

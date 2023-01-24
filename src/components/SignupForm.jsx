@@ -4,6 +4,7 @@ import axios from "axios";
 import { BASE_URL } from "../shared";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { toast } from "react-toastify";
 
 const SignupForm = () => {
   const [error, setError] = useState();
@@ -18,16 +19,16 @@ const SignupForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-   
+
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
-    myHeaders.append("Cookie", "PHPSESSID=8a43b15b8f79a51b13bb309a52ff11cc");
+    // myHeaders.append("Cookie", "PHPSESSID=8a43b15b8f79a51b13bb309a52ff11cc");
 
     var urlencoded = new URLSearchParams();
-    urlencoded.append("name", "Taiwo kelani");
-    urlencoded.append("email", "kelnitaiwo122@gmail.com");
-    urlencoded.append("phone", "08143363045");
-    urlencoded.append("password", "password");
+    urlencoded.append("name", name);
+    urlencoded.append("email", email);
+    urlencoded.append("phone", phone);
+    urlencoded.append("password", password);
 
     var requestOptions = {
       method: "POST",
@@ -47,6 +48,7 @@ const SignupForm = () => {
         result = JSON.parse(result);
         console.log("Result", result);
         if (result.code === 200) {
+          toast.success("good");
           navigate("/verify");
         }
         if (result.code === 400) {
@@ -97,7 +99,7 @@ const SignupForm = () => {
         </div>
         <div className="form-input-box remember-box">
           <input
-          id="remember"
+            id="remember"
             type="checkbox"
             checked={rememberMe}
             onChange={(event) => setRememberMe(event.target.checked)}
